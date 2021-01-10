@@ -73,6 +73,35 @@ type Resource struct {
 	Headers     map[string]string `json:"headers,omitempty" yaml:"headers,omitempty"`
 }
 
+const DefaultTimeoutStr = "1s"
+
+// UnmarshalYAML Resource custom UnmarshalYAML
+func (r *Resource) UnmarshalYAML(unmarshal func(interface{}) error) error {
+	s := &struct {
+		Timeout string `yaml:"timeout"`
+	}{}
+	type Alias Resource
+	alias := (*Alias)(r)
+	if err := unmarshal(alias); err != nil {
+		return err
+	}
+	if err := unmarshal(s); err != nil {
+		return err
+	}
+	// if timeout is empty must set a default value. if "" used to time.ParseDuration will err.
+	if s.Timeout == "" {
+		s.Timeout = DefaultTimeoutStr
+	}
+	d, err := time.ParseDuration(s.Timeout)
+	if err != nil {
+		return err
+	}
+
+	r.Timeout = d
+
+	return nil
+}
+
 // Method defines the method of the api
 type Method struct {
 	OnAir              bool          `json:"onAir" yaml:"onAir"` // true means the method is up and false means method is down
@@ -82,6 +111,31 @@ type Method struct {
 	HTTPVerb           `json:"httpVerb" yaml:"httpVerb"`
 	InboundRequest     `json:"inboundRequest" yaml:"inboundRequest"`
 	IntegrationRequest `json:"integrationRequest" yaml:"integrationRequest"`
+}
+
+// UnmarshalYAML method custom UnmarshalYAML
+func (m *Method) UnmarshalYAML(unmarshal func(interface{}) error) error {
+	type Alias Method
+	alias := (*Alias)(m)
+	if err := unmarshal(alias); err != nil {
+		return err
+	}
+	s := &struct {
+		Timeout string `yaml:"timeout"`
+	}{}
+	if err := unmarshal(s); err != nil {
+		return err
+	}
+	// if timeout is empty must set a default value. if "" used to time.ParseDuration will err.
+	if s.Timeout == "" {
+		s.Timeout = DefaultTimeoutStr
+	}
+	d, err := time.ParseDuration(s.Timeout)
+	if err != nil {
+		return err
+	}
+	m.Timeout = d
+	return nil
 }
 
 // InboundRequest defines the details of the inbound
