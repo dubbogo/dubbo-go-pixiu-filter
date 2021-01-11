@@ -15,38 +15,46 @@
  * limitations under the License.
  */
 
-package context
+package model
 
-import (
-	"github.com/dubbogo/dubbo-go-proxy-common/model"
-	"github.com/dubbogo/dubbo-go-proxy-common/router"
+// StringMatcher matcher string
+type StringMatcher struct {
+	Matcher MatcherType
+}
+
+// Match
+func (sm *StringMatcher) Match() (bool, error) {
+	return true, nil
+}
+
+// MatcherType matcher type
+type MatcherType int32
+
+const (
+	Exact MatcherType = 0 + iota
+	Prefix
+	Suffix
+	Regex
 )
 
-// Context run context
-type Context interface {
-	Next()
-	Abort()
-	AbortWithError(string, error)
-	AppendFilterFunc(ff ...FilterFunc)
+var MatcherTypeName = map[int32]string{
+	0: "Exact",
+	1: "Prefix",
+	2: "Suffix",
+	3: "Regex",
+}
 
-	Status(code int)
-	StatusCode() int
-	WriteWithStatus(int, []byte) (int, error)
-	Write([]byte) (int, error)
-	AddHeader(k, v string)
-	GetHeader(k string) string
-	GetUrl() string
-	GetMethod() string
+var MatcherTypeValue = map[string]int32{
+	"Exact":  0,
+	"Prefix": 1,
+	"Suffix": 2,
+	"Regex":  3,
+}
 
-	BuildFilters()
-
-	API(router.API)
-	GetAPI() *router.API
-	Api(api *model.Api)
-	GetApi() *model.Api
-
-	GetClientIP() string
-	GetApplicationName() string
-
-	WriteErr(p interface{})
+// HeaderMatcher header matcher struct
+// Name header key, Value header value, Regex header value is regex
+type HeaderMatcher struct {
+	Name  string `yaml:"name" json:"name"`
+	Value string `yaml:"value" json:"value"`
+	Regex bool   `yaml:"regex" json:"regex"`
 }
