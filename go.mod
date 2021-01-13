@@ -1,4 +1,4 @@
-module github.com/dubbogo/dubbo-go-proxy-common
+module github.com/dubbogo/dubbo-go-proxy-filter
 
 go 1.14
 

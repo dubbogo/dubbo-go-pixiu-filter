@@ -15,46 +15,47 @@
  * limitations under the License.
  */
 
-package model
+package api
 
-// StringMatcher matcher string
-type StringMatcher struct {
-	Matcher MatcherType
-}
-
-// Match
-func (sm *StringMatcher) Match() (bool, error) {
-	return true, nil
-}
-
-// MatcherType matcher type
-type MatcherType int32
+type ApiType int32
 
 const (
-	Exact MatcherType = 0 + iota
-	Prefix
-	Suffix
-	Regex
+	REST_VALUE  = "REST"
+	GRPC_VALUE  = "GRPC"
+	DUBBO_VALUE = "DUBBO"
 )
 
-var MatcherTypeName = map[int32]string{
-	0: "Exact",
-	1: "Prefix",
-	2: "Suffix",
-	3: "Regex",
-}
+// Status is the components status
+type Status int32
 
-var MatcherTypeValue = map[string]int32{
-	"Exact":  0,
-	"Prefix": 1,
-	"Suffix": 2,
-	"Regex":  3,
-}
+const (
+	Down    Status = 0
+	Up      Status = 1
+	Unknown Status = 2
+)
 
-// HeaderMatcher header matcher struct
-// Name header key, Value header value, Regex header value is regex
-type HeaderMatcher struct {
-	Name  string `yaml:"name" json:"name"`
-	Value string `yaml:"value" json:"value"`
-	Regex bool   `yaml:"regex" json:"regex"`
+type RequestMethod int32
+
+const (
+	METHOD_UNSPECIFIED = 0 + iota // (DEFAULT)
+	GET
+	HEAD
+	POST
+	PUT
+	DELETE
+	CONNECT
+	OPTIONS
+	TRACE
+)
+
+var RequestMethodValue = map[string]int32{
+	"METHOD_UNSPECIFIED": 0,
+	"GET":                1,
+	"HEAD":               2,
+	"POST":               3,
+	"PUT":                4,
+	"DELETE":             5,
+	"CONNECT":            6,
+	"OPTIONS":            7,
+	"TRACE":              8,
 }

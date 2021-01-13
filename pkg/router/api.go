@@ -17,7 +17,9 @@
 
 package router
 
-import "github.com/dubbogo/dubbo-go-proxy-common/config"
+import (
+	"github.com/dubbogo/dubbo-go-proxy-filter/pkg/api/config"
+)
 
 // API describes the minimum configuration of an RESTful api configure in gateway
 type API struct {

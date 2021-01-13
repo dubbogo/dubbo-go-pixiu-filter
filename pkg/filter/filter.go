@@ -17,7 +17,7 @@
 
 package filter
 
-import "github.com/dubbogo/dubbo-go-proxy-common/context"
+import "github.com/dubbogo/dubbo-go-proxy-filter/pkg/context"
 
 // Filter filter interface, used for context.FilterChain.
 type Filter interface {
