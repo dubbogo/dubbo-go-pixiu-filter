@@ -15,38 +15,17 @@
  * limitations under the License.
  */
 
-package context
+package filter
 
-import (
-	"github.com/dubbogo/dubbo-go-proxy-common/model"
-	"github.com/dubbogo/dubbo-go-proxy-common/router"
-)
+import "github.com/dubbogo/dubbo-go-proxy-filter/pkg/context"
 
-// Context run context
-type Context interface {
-	Next()
-	Abort()
-	AbortWithError(string, error)
-	AppendFilterFunc(ff ...FilterFunc)
+// Filter filter interface, used for context.FilterChain.
+type Filter interface {
+	// Do run filter, use c.next() to next filter, before is pre logic, after is post logic.
+	Do() context.FilterFunc
+}
 
-	Status(code int)
-	StatusCode() int
-	WriteWithStatus(int, []byte) (int, error)
-	Write([]byte) (int, error)
-	AddHeader(k, v string)
-	GetHeader(k string) string
-	GetUrl() string
-	GetMethod() string
-
-	BuildFilters()
-
-	API(router.API)
-	GetAPI() *router.API
-	Api(api *model.Api)
-	GetApi() *model.Api
-
-	GetClientIP() string
-	GetApplicationName() string
-
-	WriteErr(p interface{})
+// ErrResponse err response.
+type ErrResponse struct {
+	Message string `json:"message"`
 }

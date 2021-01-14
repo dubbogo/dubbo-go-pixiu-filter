@@ -15,13 +15,38 @@
  * limitations under the License.
  */
 
-package router
+package context
 
-import "github.com/dubbogo/dubbo-go-proxy-common/config"
+import (
+	"github.com/dubbogo/dubbo-go-proxy-filter/pkg/api"
+	"github.com/dubbogo/dubbo-go-proxy-filter/pkg/router"
+)
 
-// API describes the minimum configuration of an RESTful api configure in gateway
-type API struct {
-	URLPattern    string `json:"urlPattern" yaml:"urlPattern"`
-	config.Method `json:"method,inline" yaml:"method,inline"`
-	Headers       map[string]string `json:"headers,omitempty" yaml:"headers,omitempty"`
+// Context run context
+type Context interface {
+	Next()
+	Abort()
+	AbortWithError(string, error)
+	AppendFilterFunc(ff ...FilterFunc)
+
+	Status(code int)
+	StatusCode() int
+	WriteWithStatus(int, []byte) (int, error)
+	Write([]byte) (int, error)
+	AddHeader(k, v string)
+	GetHeader(k string) string
+	GetUrl() string
+	GetMethod() string
+
+	BuildFilters()
+
+	API(router.API)
+	GetAPI() *router.API
+	Api(api *api.Api)
+	GetApi() *api.Api
+
+	GetClientIP() string
+	GetApplicationName() string
+
+	WriteErr(p interface{})
 }

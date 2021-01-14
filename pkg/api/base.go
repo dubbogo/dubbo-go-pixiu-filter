@@ -15,17 +15,47 @@
  * limitations under the License.
  */
 
-package filter
+package api
 
-import "github.com/dubbogo/dubbo-go-proxy-common/context"
+type ApiType int32
 
-// Filter filter interface, used for context.FilterChain.
-type Filter interface {
-	// Do run filter, use c.next() to next filter, before is pre logic, after is post logic.
-	Do() context.FilterFunc
-}
+const (
+	REST_VALUE  = "REST"
+	GRPC_VALUE  = "GRPC"
+	DUBBO_VALUE = "DUBBO"
+)
 
-// ErrResponse err response.
-type ErrResponse struct {
-	Message string `json:"message"`
+// Status is the components status
+type Status int32
+
+const (
+	Down    Status = 0
+	Up      Status = 1
+	Unknown Status = 2
+)
+
+type RequestMethod int32
+
+const (
+	METHOD_UNSPECIFIED = 0 + iota // (DEFAULT)
+	GET
+	HEAD
+	POST
+	PUT
+	DELETE
+	CONNECT
+	OPTIONS
+	TRACE
+)
+
+var RequestMethodValue = map[string]int32{
+	"METHOD_UNSPECIFIED": 0,
+	"GET":                1,
+	"HEAD":               2,
+	"POST":               3,
+	"PUT":                4,
+	"DELETE":             5,
+	"CONNECT":            6,
+	"OPTIONS":            7,
+	"TRACE":              8,
 }

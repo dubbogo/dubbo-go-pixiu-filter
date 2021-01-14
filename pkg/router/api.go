@@ -15,46 +15,15 @@
  * limitations under the License.
  */
 
-package model
+package router
 
-// StringMatcher matcher string
-type StringMatcher struct {
-	Matcher MatcherType
-}
-
-// Match
-func (sm *StringMatcher) Match() (bool, error) {
-	return true, nil
-}
-
-// MatcherType matcher type
-type MatcherType int32
-
-const (
-	Exact MatcherType = 0 + iota
-	Prefix
-	Suffix
-	Regex
+import (
+	"github.com/dubbogo/dubbo-go-proxy-filter/pkg/api/config"
 )
 
-var MatcherTypeName = map[int32]string{
-	0: "Exact",
-	1: "Prefix",
-	2: "Suffix",
-	3: "Regex",
-}
-
-var MatcherTypeValue = map[string]int32{
-	"Exact":  0,
-	"Prefix": 1,
-	"Suffix": 2,
-	"Regex":  3,
-}
-
-// HeaderMatcher header matcher struct
-// Name header key, Value header value, Regex header value is regex
-type HeaderMatcher struct {
-	Name  string `yaml:"name" json:"name"`
-	Value string `yaml:"value" json:"value"`
-	Regex bool   `yaml:"regex" json:"regex"`
+// API describes the minimum configuration of an RESTful api configure in gateway
+type API struct {
+	URLPattern    string `json:"urlPattern" yaml:"urlPattern"`
+	config.Method `json:"method,inline" yaml:"method,inline"`
+	Headers       map[string]string `json:"headers,omitempty" yaml:"headers,omitempty"`
 }
