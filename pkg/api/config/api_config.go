@@ -78,8 +78,8 @@ type PluginsGroup struct {
 
 //PluginsConfig defines the pre & post plugins
 type PluginsConfig struct {
-	PrePlugins  []*PluginsInUse `json:"pre" yaml:"pre"`
-	PostPlugins []*PluginsInUse `json:"post" yaml:"post"`
+	PrePlugins  PluginsInUse `json:"pre" yaml:"pre"`
+	PostPlugins PluginsInUse `json:"post" yaml:"post"`
 }
 
 type PluginsInUse struct {
