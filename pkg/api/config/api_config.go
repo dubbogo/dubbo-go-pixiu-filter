@@ -76,6 +76,12 @@ type PluginsGroup struct {
 	Plugins   []Plugin `json:"plugins" yaml:"plugins"`
 }
 
+//PluginsConfig defines the pre & post plugins
+type PluginsConfig struct {
+	PrePlugins  []*PluginsInUse `json:"pre" yaml:"pre"`
+	PostPlugins []*PluginsInUse `json:"post" yaml:"post"`
+}
+
 type PluginsInUse struct {
 	GroupNames  []string `json:"groupNames" yaml:"groupNames"`
 	PluginNames []string `json:"pluginNames" yaml:"pluginNames"`
@@ -88,7 +94,7 @@ type Resource struct {
 	Timeout     time.Duration     `json:"timeout" yaml:"timeout"`
 	Description string            `json:"description" yaml:"description"`
 	Filters     []string          `json:"filters" yaml:"filters"`
-	Plugins     PluginsInUse      `json:"plugins" yaml:"plugins"`
+	Plugins     PluginsConfig     `json:"plugins" yaml:"plugins"`
 	Methods     []Method          `json:"methods" yaml:"methods"`
 	Resources   []Resource        `json:"resources,omitempty" yaml:"resources,omitempty"`
 	Headers     map[string]string `json:"headers,omitempty" yaml:"headers,omitempty"`
