@@ -19,12 +19,6 @@ package api
 
 type ApiType int32
 
-const (
-	REST_VALUE  = "REST"
-	GRPC_VALUE  = "GRPC"
-	DUBBO_VALUE = "DUBBO"
-)
-
 // Status is the components status
 type Status int32
 
