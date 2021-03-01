@@ -195,8 +195,9 @@ type IntegrationRequest struct {
 
 // MappingParam defines the mapping rules of headers and queryStrings
 type MappingParam struct {
-	Name  string `json:"name,omitempty" yaml:"name"`
-	MapTo string `json:"mapTo,omitempty" yaml:"mapTo"`
+	Name    string `json:"name,omitempty" yaml:"name"`
+	MapTo   string `json:"mapTo,omitempty" yaml:"mapTo"`
+	MapType string `json:"mapType,omitempty" yaml:"mapType"`
 	// Opt some action.
 	Opt Opt `json:"opt,omitempty" yaml:"opt,omitempty"`
 }
@@ -213,16 +214,14 @@ type Opt struct {
 
 // DubboBackendConfig defines the basic dubbo backend config
 type DubboBackendConfig struct {
-	ClusterName     string   `yaml:"clusterName" json:"clusterName"`
-	ApplicationName string   `yaml:"applicationName" json:"applicationName"`
-	Protocol        string   `yaml:"protocol" json:"protocol,omitempty" default:"dubbo"`
-	Group           string   `yaml:"group" json:"group"`
-	Version         string   `yaml:"version" json:"version"`
-	Interface       string   `yaml:"interface" json:"interface"`
-	Method          string   `yaml:"method" json:"method"`
-	ParamTypes      []string `yaml:"paramTypes" json:"paramTypes"`
-	ToParamTypes    []string `yaml:"toParamTypes" json:"toParamTypes"`
-	Retries         string   `yaml:"retries" json:"retries,omitempty"`
+	ClusterName     string `yaml:"clusterName" json:"clusterName"`
+	ApplicationName string `yaml:"applicationName" json:"applicationName"`
+	Protocol        string `yaml:"protocol" json:"protocol,omitempty" default:"dubbo"`
+	Group           string `yaml:"group" json:"group"`
+	Version         string `yaml:"version" json:"version"`
+	Interface       string `yaml:"interface" json:"interface"`
+	Method          string `yaml:"method" json:"method"`
+	Retries         string `yaml:"retries" json:"retries,omitempty"`
 }
 
 // HTTPBackendConfig defines the basic dubbo backend config
