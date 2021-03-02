@@ -198,18 +198,6 @@ type MappingParam struct {
 	Name    string `json:"name,omitempty" yaml:"name"`
 	MapTo   string `json:"mapTo,omitempty" yaml:"mapTo"`
 	MapType string `json:"mapType,omitempty" yaml:"mapType"`
-	// Opt some action.
-	Opt Opt `json:"opt,omitempty" yaml:"opt,omitempty"`
-}
-
-// Opt option, action for compatibility.
-type Opt struct {
-	// Name match dubbo.DefaultMapOption key.
-	Name string `json:"name,omitempty" yaml:"name"`
-	// Open control opt create, only true will create a Opt.
-	Open bool `json:"open,omitempty" yaml:"open"`
-	// Usable setTarget condition, true can set, false not set.
-	Usable bool `json:"usable,omitempty" yaml:"usable"`
 }
 
 // DubboBackendConfig defines the basic dubbo backend config
