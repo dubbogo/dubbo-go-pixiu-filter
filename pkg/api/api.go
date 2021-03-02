@@ -23,11 +23,11 @@ import (
 
 var (
 	CacheApi = sync.Map{}
-	EmptyApi = &Api{}
+	EmptyApi = &API{}
 )
 
-// Api is api gateway concept, control request from browser、Mobile APP、third party people
-type Api struct {
+// API is api gateway concept, control request from browser、Mobile APP、third party people
+type API struct {
 	Name          string      `json:"name" yaml:"name"`
 	ITypeStr      string      `json:"itype" yaml:"itype"`
 	IType         ApiType     `json:"-" yaml:"-"`
@@ -40,21 +40,21 @@ type Api struct {
 }
 
 // NewApi
-func NewApi() *Api {
-	return &Api{}
+func NewApi() *API {
+	return &API{}
 }
 
 // FindApi find a api, if not exist, return false
-func (a *Api) FindApi(name string) (*Api, bool) {
+func (a *API) FindApi(name string) (*API, bool) {
 	if v, ok := CacheApi.Load(name); ok {
-		return v.(*Api), true
+		return v.(*API), true
 	}
 
 	return nil, false
 }
 
 // MatchMethod
-func (a *Api) MatchMethod(method string) bool {
+func (a *API) MatchMethod(method string) bool {
 	i := RequestMethodValue[method]
 	if a.RequestMethod == RequestMethod(i) {
 		return true
@@ -64,24 +64,24 @@ func (a *Api) MatchMethod(method string) bool {
 }
 
 // IsOk api status equals Up
-func (a *Api) IsOk(name string) bool {
+func (a *API) IsOk(name string) bool {
 	if v, ok := CacheApi.Load(name); ok {
-		return v.(*Api).Status == Up
+		return v.(*API).Status == Up
 	}
 
 	return false
 }
 
 // Offline api offline
-func (a *Api) Offline(name string) {
+func (a *API) Offline(name string) {
 	if v, ok := CacheApi.Load(name); ok {
-		v.(*Api).Status = Down
+		v.(*API).Status = Down
 	}
 }
 
 // Online api online
-func (a *Api) Online(name string) {
+func (a *API) Online(name string) {
 	if v, ok := CacheApi.Load(name); ok {
-		v.(*Api).Status = Up
+		v.(*API).Status = Up
 	}
 }
