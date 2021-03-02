@@ -42,8 +42,8 @@ type Context interface {
 
 	API(router.API)
 	GetAPI() *router.API
-	Api(api *api.Api)
-	GetApi() *api.Api
+	Api(api *api.API)
+	GetApi() *api.API
 
 	GetClientIP() string
 	GetApplicationName() string
