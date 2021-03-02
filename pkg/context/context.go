@@ -18,8 +18,8 @@
 package context
 
 import (
-	"github.com/dubbogo/dubbo-go-proxy-filter/pkg/api"
-	"github.com/dubbogo/dubbo-go-proxy-filter/pkg/router"
+	"github.com/dubbogo/dubbo-go-pixiu-filter/pkg/api"
+	"github.com/dubbogo/dubbo-go-pixiu-filter/pkg/router"
 )
 
 // Context run context
