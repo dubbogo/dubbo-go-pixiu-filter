@@ -195,34 +195,21 @@ type IntegrationRequest struct {
 
 // MappingParam defines the mapping rules of headers and queryStrings
 type MappingParam struct {
-	Name  string `json:"name,omitempty" yaml:"name"`
-	MapTo string `json:"mapTo,omitempty" yaml:"mapTo"`
-	// Opt some action.
-	Opt Opt `json:"opt,omitempty" yaml:"opt,omitempty"`
-}
-
-// Opt option, action for compatibility.
-type Opt struct {
-	// Name match dubbo.DefaultMapOption key.
-	Name string `json:"name,omitempty" yaml:"name"`
-	// Open control opt create, only true will create a Opt.
-	Open bool `json:"open,omitempty" yaml:"open"`
-	// Usable setTarget condition, true can set, false not set.
-	Usable bool `json:"usable,omitempty" yaml:"usable"`
+	Name    string `json:"name,omitempty" yaml:"name"`
+	MapTo   string `json:"mapTo,omitempty" yaml:"mapTo"`
+	MapType string `json:"mapType,omitempty" yaml:"mapType"`
 }
 
 // DubboBackendConfig defines the basic dubbo backend config
 type DubboBackendConfig struct {
-	ClusterName     string   `yaml:"clusterName" json:"clusterName"`
-	ApplicationName string   `yaml:"applicationName" json:"applicationName"`
-	Protocol        string   `yaml:"protocol" json:"protocol,omitempty" default:"dubbo"`
-	Group           string   `yaml:"group" json:"group"`
-	Version         string   `yaml:"version" json:"version"`
-	Interface       string   `yaml:"interface" json:"interface"`
-	Method          string   `yaml:"method" json:"method"`
-	ParamTypes      []string `yaml:"paramTypes" json:"paramTypes"`
-	ToParamTypes    []string `yaml:"toParamTypes" json:"toParamTypes"`
-	Retries         string   `yaml:"retries" json:"retries,omitempty"`
+	ClusterName     string `yaml:"clusterName" json:"clusterName"`
+	ApplicationName string `yaml:"applicationName" json:"applicationName"`
+	Protocol        string `yaml:"protocol" json:"protocol,omitempty" default:"dubbo"`
+	Group           string `yaml:"group" json:"group"`
+	Version         string `yaml:"version" json:"version"`
+	Interface       string `yaml:"interface" json:"interface"`
+	Method          string `yaml:"method" json:"method"`
+	Retries         string `yaml:"retries" json:"retries,omitempty"`
 }
 
 // HTTPBackendConfig defines the basic dubbo backend config
