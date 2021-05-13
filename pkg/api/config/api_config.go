@@ -64,6 +64,7 @@ type APIConfig struct {
 }
 
 type Plugin struct {
+	Id                 int64  `json:"id,inline,omitempty" yaml:"id,omitempty"`
 	Name               string `json:"name" yaml:"name"`
 	Version            string `json:"version" yaml:"version"`
 	Priority           int    `json:"priority" yaml:"priority"`
@@ -72,6 +73,7 @@ type Plugin struct {
 
 // PluginsGroup defines the plugins group info
 type PluginsGroup struct {
+	Id        int64    `json:"id,omitempty" yaml:"id,omitempty"`
 	GroupName string   `json:"groupName" yaml:"groupName"`
 	Plugins   []Plugin `json:"plugins" yaml:"plugins"`
 }
@@ -89,6 +91,7 @@ type PluginsInUse struct {
 
 // Resource defines the API path
 type Resource struct {
+	Id          int               `json:"id,omitempty" yaml:"id,omitempty"`
 	Type        string            `json:"type" yaml:"type"` // Restful, Dubbo
 	Path        string            `json:"path" yaml:"path"`
 	Timeout     time.Duration     `json:"timeout" yaml:"timeout"`
@@ -131,6 +134,8 @@ func (r *Resource) UnmarshalYAML(unmarshal func(interface{}) error) error {
 
 // Method defines the method of the api
 type Method struct {
+	Id                 int           `json:"id,omitempty" yaml:"id,omitempty"`
+	ResourcePath       string        `json:"resourcePath" yaml:"resourcePath"`
 	OnAir              bool          `json:"onAir" yaml:"onAir"` // true means the method is up and false means method is down
 	Timeout            time.Duration `json:"timeout" yaml:"timeout"`
 	Mock               bool          `json:"mock" yaml:"mock"`
