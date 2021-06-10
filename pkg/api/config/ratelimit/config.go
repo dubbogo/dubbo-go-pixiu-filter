@@ -31,28 +31,28 @@ type Config struct {
 // Resource API group for rate limit, all API in group is considered to be the same resource
 type Resource struct {
 	ID    int64  `json:"id,omitempty" yaml:"id,omitempty"`
-	Name  string `json:"name" yaml:"name"`
+	Name  string `json:"name,omitempty" yaml:"name,omitempty"`
 	Items []Item `json:"items" yaml:"items"`
 }
 
 // Item API item for group
 type Item struct {
-	MatchStrategy MatchStrategy `json:"matchStrategy" yaml:"matchStrategy"`
-	Pattern       string        `json:"pattern,omitempty" yaml:"pattern,omitempty"`
+	MatchStrategy MatchStrategy `json:"matchStrategy,omitempty" yaml:"matchStrategy,omitempty"`
+	Pattern       string        `json:"pattern,omitempty" yaml:"pattern"`
 }
 
 // Rule api group 's rate-limit rule
 type Rule struct {
-	ID        int64 `json:"id,omitempty" yaml:"id,omitempty"`
-	flow.Rule `yaml:",inline"`
-	Enable    bool `json:"enable" yaml:"enable"`
+	ID       int64     `json:"id,omitempty" yaml:"id,omitempty"`
+	FlowRule flow.Rule `json:"flowRule,omitempty" yaml:"flowRule,omitempty"`
+	Enable   bool      `json:"enable,omitempty" yaml:"enable,omitempty"`
 }
 
 // MatchStrategy API match strategy
 type MatchStrategy int32
 
 const (
-	EXACT MatchStrategy = iota
-	REGEX
-	ANT_PATH
+	EXACT    MatchStrategy = 0
+	REGEX                  = 1
+	ANT_PATH               = 2
 )
