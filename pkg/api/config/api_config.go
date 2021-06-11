@@ -21,6 +21,10 @@ import (
 	"time"
 )
 
+import (
+	"github.com/dubbogo/dubbo-go-pixiu-filter/pkg/api/config/ratelimit"
+)
+
 // HTTPVerb defines the restful api http verb
 type HTTPVerb string
 
@@ -55,12 +59,13 @@ const (
 
 // APIConfig defines the data structure of the api gateway configuration
 type APIConfig struct {
-	Name           string         `json:"name" yaml:"name"`
-	Description    string         `json:"description" yaml:"description"`
-	Resources      []Resource     `json:"resources" yaml:"resources"`
-	Definitions    []Definition   `json:"definitions" yaml:"definitions"`
-	PluginFilePath string         `json:"pluginFilePath" yaml:"pluginFilePath"`
-	PluginsGroup   []PluginsGroup `json:"pluginsGroup" yaml:"pluginsGroup"`
+	Name           string           `json:"name" yaml:"name"`
+	Description    string           `json:"description" yaml:"description"`
+	Resources      []Resource       `json:"resources" yaml:"resources"`
+	Definitions    []Definition     `json:"definitions" yaml:"definitions"`
+	PluginFilePath string           `json:"pluginFilePath" yaml:"pluginFilePath"`
+	PluginsGroup   []PluginsGroup   `json:"pluginsGroup" yaml:"pluginsGroup"`
+	RateLimit      ratelimit.Config `json:"rateLimit" yaml:"rateLimit"`
 }
 
 type Plugin struct {
