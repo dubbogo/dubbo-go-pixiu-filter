@@ -17,8 +17,7 @@
 
 package context
 
-// FilterFunc filter func, filter
-type FilterFunc func(Context)
+import "github.com/dubbogo/dubbo-go-pixiu-filter/pkg/filter"
 
 // FilterChain filter chain
-type FilterChain []FilterFunc
+type FilterChain []filter.Filter

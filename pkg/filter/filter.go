@@ -19,10 +19,16 @@ package filter
 
 import "github.com/dubbogo/dubbo-go-pixiu-filter/pkg/context"
 
-// Filter filter interface, used for context.FilterChain.
-type Filter interface {
-	// Do run filter, use c.next() to next filter, before is pre logic, after is post logic.
-	Do() context.FilterFunc
+// Filter filter func, filter
+type Filter func(ctx context.Context)
+
+// Factory filter Factory, for FilterFunc
+type Factory interface {
+	// Config return the *config
+	Config() interface{}
+
+	// Create filter, use c.next() to next filter, before is pre logic, after is post logic.
+	Create() Filter
 }
 
 // ErrResponse err response.
