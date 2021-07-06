@@ -21,10 +21,6 @@ import (
 	"time"
 )
 
-import (
-	"github.com/dubbogo/dubbo-go-pixiu-filter/pkg/api/config/ratelimit"
-)
-
 // HTTPVerb defines the restful api http verb
 type HTTPVerb string
 
@@ -59,39 +55,10 @@ const (
 
 // APIConfig defines the data structure of the api gateway configuration
 type APIConfig struct {
-	Name           string           `json:"name" yaml:"name"`
-	Description    string           `json:"description" yaml:"description"`
-	Resources      []Resource       `json:"resources" yaml:"resources"`
-	Definitions    []Definition     `json:"definitions" yaml:"definitions"`
-	PluginFilePath string           `json:"pluginFilePath" yaml:"pluginFilePath"`
-	PluginsGroup   []PluginsGroup   `json:"pluginsGroup" yaml:"pluginsGroup"`
-	RateLimit      ratelimit.Config `json:"rateLimit" yaml:"rateLimit"`
-}
-
-type Plugin struct {
-	ID                 int64  `json:"id,inline,omitempty" yaml:"id,omitempty"`
-	Name               string `json:"name" yaml:"name"`
-	Version            string `json:"version" yaml:"version"`
-	Priority           int    `json:"priority" yaml:"priority"`
-	ExternalLookupName string `json:"externalLookupName" yaml:"externalLookupName"`
-}
-
-// PluginsGroup defines the plugins group info
-type PluginsGroup struct {
-	ID        int64    `json:"id,omitempty" yaml:"id,omitempty"`
-	GroupName string   `json:"groupName" yaml:"groupName"`
-	Plugins   []Plugin `json:"plugins" yaml:"plugins"`
-}
-
-//PluginsConfig defines the pre & post plugins
-type PluginsConfig struct {
-	PrePlugins  PluginsInUse `json:"pre" yaml:"pre"`
-	PostPlugins PluginsInUse `json:"post" yaml:"post"`
-}
-
-type PluginsInUse struct {
-	GroupNames  []string `json:"groupNames" yaml:"groupNames"`
-	PluginNames []string `json:"pluginNames" yaml:"pluginNames"`
+	Name        string       `json:"name" yaml:"name"`
+	Description string       `json:"description" yaml:"description"`
+	Resources   []Resource   `json:"resources" yaml:"resources"`
+	Definitions []Definition `json:"definitions" yaml:"definitions"`
 }
 
 // Resource defines the API path
@@ -101,8 +68,7 @@ type Resource struct {
 	Path        string            `json:"path" yaml:"path"`
 	Timeout     time.Duration     `json:"timeout" yaml:"timeout"`
 	Description string            `json:"description" yaml:"description"`
-	Filters     []string          `json:"filters" yaml:"filters"`
-	Plugins     PluginsConfig     `json:"plugins" yaml:"plugins"`
+	Filters     []Filter          `json:"filters" yaml:"filters"`
 	Methods     []Method          `json:"methods" yaml:"methods"`
 	Resources   []Resource        `json:"resources,omitempty" yaml:"resources,omitempty"`
 	Headers     map[string]string `json:"headers,omitempty" yaml:"headers,omitempty"`
@@ -137,6 +103,12 @@ func (r *Resource) UnmarshalYAML(unmarshal func(interface{}) error) error {
 	return nil
 }
 
+// Filter filter with config
+type Filter struct {
+	Name   string      `json:"name,omitempty" yaml:"name,omitempty"`
+	Config interface{} `json:"config,omitempty" yaml:"config,omitempty"`
+}
+
 // Method defines the method of the api
 type Method struct {
 	ID                 int           `json:"id,omitempty" yaml:"id,omitempty"`
@@ -144,7 +116,7 @@ type Method struct {
 	OnAir              bool          `json:"onAir" yaml:"onAir"` // true means the method is up and false means method is down
 	Timeout            time.Duration `json:"timeout" yaml:"timeout"`
 	Mock               bool          `json:"mock" yaml:"mock"`
-	Filters            []string      `json:"filters" yaml:"filters"`
+	Filters            []Filter      `json:"filters" yaml:"filters"`
 	HTTPVerb           `json:"httpVerb" yaml:"httpVerb"`
 	InboundRequest     `json:"inboundRequest" yaml:"inboundRequest"`
 	IntegrationRequest `json:"integrationRequest" yaml:"integrationRequest"`

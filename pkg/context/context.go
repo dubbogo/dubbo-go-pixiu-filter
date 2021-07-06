@@ -18,7 +18,7 @@
 package context
 
 import (
-	"github.com/dubbogo/dubbo-go-pixiu-filter/pkg/api"
+	"github.com/dubbogo/dubbo-go-pixiu-filter/pkg/filter"
 	"github.com/dubbogo/dubbo-go-pixiu-filter/pkg/router"
 )
 
@@ -27,7 +27,7 @@ type Context interface {
 	Next()
 	Abort()
 	AbortWithError(string, error)
-	AppendFilterFunc(ff ...FilterFunc)
+	AppendFilterFunc(ff ...filter.Filter)
 
 	Status(code int)
 	StatusCode() int
@@ -42,8 +42,6 @@ type Context interface {
 
 	API(router.API)
 	GetAPI() *router.API
-	Api(api *api.API)
-	GetApi() *api.API
 
 	GetClientIP() string
 	GetApplicationName() string
