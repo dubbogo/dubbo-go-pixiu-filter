@@ -15,20 +15,7 @@
  * limitations under the License.
  */
 
-package filter
+package context
 
-import "github.com/dubbogo/dubbo-go-pixiu-filter/pkg/context"
-
-// Factory filter Factory, for FilterFunc
-type Factory interface {
-	// Config return the *config
-	Config() interface{}
-
-	// Apply return the filter, use c.next() to next filter, before is pre logic, after is post logic.
-	Apply() func(ctx context.Context)
-}
-
-// ErrResponse err response.
-type ErrResponse struct {
-	Message string `json:"message"`
-}
+// Filter filter func, filter
+type Filter func(ctx Context)
