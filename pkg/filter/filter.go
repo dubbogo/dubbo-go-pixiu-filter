@@ -25,7 +25,7 @@ type Factory interface {
 	Config() interface{}
 
 	// Apply return the filter, use c.next() to next filter, before is pre logic, after is post logic.
-	Apply() func(ctx context.Context) error
+	Apply() (func(ctx context.Context), error)
 }
 
 // ErrResponse err response.
