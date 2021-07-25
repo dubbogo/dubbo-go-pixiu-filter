@@ -19,12 +19,13 @@ package filter
 
 import "github.com/dubbogo/dubbo-go-pixiu-filter/pkg/context"
 
-// Factory filter Factory, for FilterFunc
+// Factory filter Factory, for FilterFunc. filter manager will fill the Configuration from local or config center
 type Factory interface {
-	// Config return the *config
+	// Config return the pointer of config
 	Config() interface{}
 
-	// Apply return the filter, use c.next() to next filter, before is pre logic, after is post logic.
+	// Apply return the filter func, initialize whatever you want before return the func
+	// use c.next() to next filter, before is pre logic, after is post logic.
 	Apply() (func(ctx context.Context), error)
 }
 
