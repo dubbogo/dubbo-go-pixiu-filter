@@ -105,8 +105,8 @@ func (r *Resource) UnmarshalYAML(unmarshal func(interface{}) error) error {
 
 // Filter filter with config
 type Filter struct {
-	Name   string      `json:"name,omitempty" yaml:"name,omitempty"`
-	Config interface{} `json:"config,omitempty" yaml:"config,omitempty"`
+	Name   string                 `json:"name,omitempty" yaml:"name,omitempty"`
+	Config map[string]interface{} `json:"config,omitempty" yaml:"config,omitempty"`
 }
 
 // Method defines the method of the api
