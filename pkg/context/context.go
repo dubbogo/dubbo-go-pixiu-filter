@@ -26,7 +26,7 @@ type Context interface {
 	Next()
 	Abort()
 	AbortWithError(string, error)
-	AppendFilterFunc(ff ...func(ctx Context))
+	AppendFilter(ff ...func(Context))
 
 	Status(code int)
 	StatusCode() int
