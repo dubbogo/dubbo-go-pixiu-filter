@@ -141,7 +141,7 @@ func (r *Resource) UnmarshalYAML(unmarshal func(interface{}) error) error {
 type Method struct {
 	ID                 int           `json:"id,omitempty" yaml:"id,omitempty"`
 	ResourcePath       string        `json:"resourcePath" yaml:"resourcePath"`
-	OnAir              bool          `json:"onAir" yaml:"onAir"` // true means the method is up and false means method is down
+	Enable             bool          `json:"enable" yaml:"enable"` // true means the method is up and false means method is down
 	Timeout            time.Duration `json:"timeout" yaml:"timeout"`
 	Mock               bool          `json:"mock" yaml:"mock"`
 	Filters            []string      `json:"filters" yaml:"filters"`
