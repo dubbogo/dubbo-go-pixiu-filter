@@ -51,6 +51,8 @@ const (
 	DubboRequest RequestType = "dubbo"
 	// HTTPRequest represents the http request
 	HTTPRequest RequestType = "http"
+	// GRPCRequest represents the grpc request
+	GRPCRequest RequestType = "grpc"
 )
 
 // APIConfig defines the data structure of the api gateway configuration
