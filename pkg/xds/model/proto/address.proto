@@ -16,4 +16,6 @@ message SocketAddress {
 	string address = 3;
 	int64 port = 4;
 	string resolver_name = 5;
+	repeated string domains = 6;
+	string certsDir = 7;
 }

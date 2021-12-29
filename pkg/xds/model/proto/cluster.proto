@@ -6,8 +6,10 @@ import "google/protobuf/struct.proto";
 
 // ApiConfigSource
 message ApiConfigSource {
-	string apitype_str = 1 ;
+	string API_type_str = 1 ;
 	repeated string cluster_name = 2;
+	string refresh_delay = 3;
+	string request_timeout = 4;
 }
 
 
