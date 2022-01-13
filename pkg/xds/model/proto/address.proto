@@ -11,11 +11,9 @@ message Address {
 // used to tell server where to bind/listen, connect to upstream and find
 // management servers
 message SocketAddress {
-	string protocol_str = 1;
-	int32 protocol = 2 ;
-	string address = 3;
-	int64 port = 4;
-	string resolver_name = 5;
-	repeated string domains = 6;
-	string certsDir = 7;
+	string address = 1;
+	int64 port = 2;
+	string resolver_name = 3;
+	repeated string domains = 4;
+	string certsDir = 5;
 }

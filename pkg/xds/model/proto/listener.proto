@@ -8,5 +8,5 @@ import "filter.proto";
 message Listener {
 	string name = 1;
 	pixiu.api.v1.Address address = 2 ;
-	repeated pixiu.api.v1.FilterChain filter_chains = 3 ;
+	pixiu.api.v1.FilterChain filter_chain = 3 ;
 }
