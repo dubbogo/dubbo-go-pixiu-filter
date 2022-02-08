@@ -2,7 +2,8 @@ syntax = "proto3";
 package pixiu.api.v1;
 
 import "address.proto";
-import "google/protobuf/struct.proto";
+import "health_check.proto";
+//import "google/protobuf/struct.proto";
 
 // ApiConfigSource
 message ApiConfigSource {
@@ -46,28 +47,28 @@ message Endpoint {
 	pixiu.api.v1.SocketAddress address = 3;
 	map<string, string> metadata = 4;
 }
-
-message HttpHealthCheck {
-	string host = 1;
-	string path = 2;
-	bool useHttp2 = 3;
-	int64 expectedStatuses = 4;
-}
-
-message GrpcHealthCheck {
-	string serviceName = 1;
-		string authority = 2;
-}
-
-message CustomHealthCheck {
-	string name = 1;
-	google.protobuf.Struct config = 2;
-}
+//
+//message HttpHealthCheck {
+//	string host = 1;
+//	string path = 2;
+//	bool useHttp2 = 3;
+//	int64 expectedStatuses = 4;
+//}
+//
+//message GrpcHealthCheck {
+//	string serviceName = 1;
+//		string authority = 2;
+//}
+//
+//message CustomHealthCheck {
+//	string name = 1;
+//	google.protobuf.Struct config = 2;
+//}
 // HealthCheck
-message HealthCheck {
-	oneof checker {
-			HttpHealthCheck httpChecker = 1;
-			GrpcHealthCheck grpcChecker = 2;
-			CustomHealthCheck customChecker = 3;
-	}
-}
+//message HealthCheck {
+//	oneof checker {
+//			HttpHealthCheck httpChecker = 1;
+//			GrpcHealthCheck grpcChecker = 2;
+//			CustomHealthCheck customChecker = 3;
+//	}
+//}
