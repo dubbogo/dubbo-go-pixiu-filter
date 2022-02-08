@@ -212,3 +212,45 @@ type Definition struct {
 	Name   string `json:"name" yaml:"name"`
 	Schema string `json:"schema" yaml:"schema"` // use json schema
 }
+
+// Cluster defines the cluster config
+type Cluster struct {
+	Name    string `json:"name,omitempty" yaml:"name"`       // cluster name
+	Type    string `json:"type,omitempty" yaml:"type"`       // cluster type
+	Address string `json:"address,omitempty" yaml:"address"` // cluster address
+	Port    int    `json:"port,omitempty" yaml:"port"`       // cluster port
+	ID      int    `json:"id,omitempty" yaml:"id"`           // cluster id
+}
+
+// RouteConfig defines the route config
+type RouteConfig struct {
+	Routes []struct {
+		Match struct {
+			Prefix string `yaml:"prefix" json:"prefix"`
+		} `yaml:"match" json:"match"`
+		Route struct {
+			Cluster                     string `yaml:"cluster" json:"cluster"`
+			ClusterNotFoundResponseCode int    `yaml:"cluster_not_found_response_code" json:"cluster_not_found_response_code"`
+		} `yaml:"route" json:"route"`
+	} `yaml:"routes" json:"routes"`
+}
+
+// HTTPFilters defines the http filter
+type HTTPFilters []struct {
+	Name   string      `yaml:"name" json:"name"`
+	Config interface{} `yaml:"config" json:"config"`
+}
+
+// Listener defines the listener config
+type Listener struct {
+	Name    string `yaml:"name" json:"name"`
+	Address struct {
+		SocketAddress struct {
+			Address string `yaml:"address" json:"address"`
+			Port    int    `yaml:"port" json:"port"`
+		} `yaml:"socket-address" json:"socket_address"`
+		Name string `yaml:"name" json:"name"`
+	} `yaml:"address" json:"address"`
+	RouteConfig RouteConfig `yaml:"route_config" json:"route_config"`
+	HTTPFilters HTTPFilters `yaml:"http_filters" json:"http_filters"`
+}
