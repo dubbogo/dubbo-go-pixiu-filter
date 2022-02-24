@@ -129,6 +129,7 @@ func (*NetworkFilter_Json) isNetworkFilter_Config() {}
 
 func (*NetworkFilter_Struct) isNetworkFilter_Config() {}
 
+// Config string kind config(yaml or json such as) for NetworkFilter.
 type Config struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

@@ -13,6 +13,7 @@ message NetworkFilter {
 	}
 }
 
+// Config string kind config(yaml or json such as) for NetworkFilter.
 message Config {
 	string content = 1;
 }

@@ -96,7 +96,7 @@ func (x *ApiConfigSource) GetRequestTimeout() string {
 	return ""
 }
 
-// ConfigSource
+// ConfigSource api config from remote
 type ConfigSource struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

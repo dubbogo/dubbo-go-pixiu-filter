@@ -15,17 +15,13 @@ message HeaderValue {
 	string value = 2;
 }
 
-// Tracing
-message Http {
-	string name = 1;
-}
-
-// Metirc config for otel metric.
+// Metric config for otel metric.
 message Metric {
 	bool enable = 1;
 	int64 prometheus_port = 2;
 }
 
+// PprofConf config how to connect to golang pprof
 message PprofConf {
 	bool enable = 1;
 	pixiu.api.v1.Address address = 2;

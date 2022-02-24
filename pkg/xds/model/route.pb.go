@@ -80,7 +80,7 @@ func (x *RouteAction) GetClusterNotFoundResponseCode() int64 {
 	return 0
 }
 
-// RouteConfiguration
+// RouteConfiguration todo config route from (Http|Grpc|...)ManagerConfig
 type RouteConfiguration struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -136,6 +136,7 @@ func (x *RouteConfiguration) GetDynamic() bool {
 	return false
 }
 
+// Router router config for RouteConfiguration
 type Router struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache

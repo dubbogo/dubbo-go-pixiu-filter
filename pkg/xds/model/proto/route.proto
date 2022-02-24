@@ -7,12 +7,13 @@ message RouteAction {
 	int64 cluster_not_found_response_code = 2;
 }
 
-// RouteConfiguration
+// RouteConfiguration todo config route from (Http|Grpc|...)ManagerConfig
 message RouteConfiguration {
 	repeated pixiu.api.v1.Router routes = 1;
 	bool dynamic = 2;
 }
 
+// Router router config for RouteConfiguration
 message Router {
 	string id = 1 ;
 	pixiu.api.v1.RouterMatch match = 2;
